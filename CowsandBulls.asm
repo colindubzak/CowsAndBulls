@@ -141,8 +141,70 @@ j outReturn
 li $v0, 4
 la $a0, correct
 syscall
-j exit
+j winSound
 ###########################################################################################
+winSound:   
+	li $t1, 72
+	li $t2, 270
+	li $t3, 127
+	li $t4, 200
+	jal play
+	jal sleep
+	jal play
+	jal sleep
+	jal play
+	jal sleep
+	li $t2, 700
+	li $t4, 500
+	jal play
+	jal sleep
+	li $t1, 68
+	li $t4, 500
+	jal play
+	jal sleep
+	li $t1, 70
+	jal play
+	jal sleep
+	li $t1, 72
+	li $t2, 400
+	li $t4, 250
+	jal play
+	jal sleep
+	li $t2, 150
+	li $t3, 0
+	li $t4, 110
+	jal play
+	jal sleep
+	li $t2, 250
+	li $t3, 127
+	li $t1, 70
+	li $t4, 200
+	jal play
+	jal sleep
+	li $t1, 72
+	li $t2, 1300
+	jal play
+	jal sleep
+	
+	j exit
+
+play:
+	move $a0, $t1
+	move $a1, $t2
+	li $a2, 1
+	move $a3, $t3
+	li $v0, 31
+	syscall
+	
+	jr $ra
+	
+sleep:
+	move $a0, $t4
+	li $v0, 32
+	syscall
+	
+	jr $ra
+##################################################################################
 	continue:
 	
 li $t5, 0 #t5 = loop counter
